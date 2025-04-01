@@ -35,6 +35,7 @@ export class CompanyService {
   private handleUnauthorizedError(error: HttpErrorResponse) {
     if (error.status === 401) {
       // Redirect to the home page on 401 Unauthorized error
+      localStorage.setItem("authToken", "");
       this.router.navigate(['/']);
     }
     return throwError(() => new Error(error.message));

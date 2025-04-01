@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 
 @Injectable({
@@ -41,8 +41,14 @@ export class AuthService {
   register(email: string, password: string): Observable<boolean> {
     return this.http.post<{ success: boolean }>(`${this.apiUrl}/register`, { email, password })
       .pipe(
-        map(response => response.success),
-        catchError(error => this.handleError(error))
+        map(response => {
+          response.success;
+          return true;
+        }),
+        catchError(error => {
+          this.handleError(error); // Handle error (e.g., log it)
+          return of(false); // Return false in case of an error
+        })
       );
   }
 
