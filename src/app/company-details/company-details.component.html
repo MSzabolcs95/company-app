@@ -1,0 +1,34 @@
+<div class="container mt-4">
+    <h4 class="mb-3 text-primary">Company Details</h4>
+  
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="text-center mt-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="text-muted mt-2">Fetching company details...</p>
+    </div>
+  
+    <!-- Company Details Card -->
+    <div *ngIf="!isLoading && company" class="card shadow-sm p-4">
+      <h2 class="card-title text-dark">{{ company.name }} - Details</h2>
+      <div class="card-body">
+        <p><strong>Ticker:</strong> {{ company.ticker }}</p>
+        <p><strong>ISIN:</strong> {{ company.isin }}</p>
+        <p><strong>Exchange:</strong> {{ company.exchange }}</p>
+        <p>
+          <strong>Website:</strong> 
+          <a [href]="company.website" target="_blank" class="btn btn-link">{{ company.website }}</a>
+        </p>
+      </div>
+      <button class="col-1 btn btn-primary btn-block" (click)="goToCompanyEdit(company.id)" >Edit</button>
+    </div>
+  
+    <!-- No Data Message -->
+    <div *ngIf="!isLoading && !company" class="text-center mt-4">
+      <p class="text-muted">Company details not available.</p>
+    </div>
+  </div>
+  
+  <router-outlet></router-outlet>
+  

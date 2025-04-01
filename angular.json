@@ -90,13 +90,19 @@
                 "input": "public"
               }
             ],
-            "styles": [
+           "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "4dc9092d-7327-4b97-a069-8bffe4f59a7b"
   }
 }

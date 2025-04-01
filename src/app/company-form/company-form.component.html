@@ -1,0 +1,95 @@
+<div class="container mt-4">
+    <h2 class="text-primary">{{ isEditMode ? 'Edit Company' : 'Create Company' }}</h2>
+  
+    <form (ngSubmit)="onSubmit()" #companyForm="ngForm" class="mt-3">
+      
+      <!-- Name Field -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input 
+          id="name" 
+          type="text" 
+          [(ngModel)]="company.name" 
+          name="name" 
+          class="form-control" 
+          [ngClass]="{'is-invalid': isFieldInvalid('name')}"
+          required
+        >
+        <div *ngIf="isFieldInvalid('name')" class="invalid-feedback">
+          Name is required.
+        </div>
+      </div>
+  
+      <!-- Exchange Field -->
+      <div class="mb-3">
+        <label for="exchange" class="form-label">Exchange:</label>
+        <input 
+          id="exchange" 
+          type="text" 
+          [(ngModel)]="company.exchange" 
+          name="exchange" 
+          class="form-control" 
+          [ngClass]="{'is-invalid': isFieldInvalid('exchange')}"
+          required
+        >
+        <div *ngIf="isFieldInvalid('exchange')" class="invalid-feedback">
+          Exchange is required.
+        </div>
+      </div>
+  
+      <!-- Ticker Field -->
+      <div class="mb-3">
+        <label for="ticker" class="form-label">Stock Ticker:</label>
+        <input 
+          id="ticker" 
+          type="text" 
+          [(ngModel)]="company.ticker" 
+          name="ticker" 
+          class="form-control" 
+          [ngClass]="{'is-invalid': isFieldInvalid('ticker')}"
+          required
+        >
+        <div *ngIf="isFieldInvalid('ticker')" class="invalid-feedback">
+          Ticker is required.
+        </div>
+      </div>
+  
+      <!-- ISIN Field -->
+      <div class="mb-3">
+        <label for="isin" class="form-label">ISIN:</label>
+        <input 
+          id="isin" 
+          type="text" 
+          [(ngModel)]="company.isin" 
+          name="isin" 
+          class="form-control" 
+          [ngClass]="{'is-invalid': isFieldInvalid('isin')}"
+          required 
+          pattern="^[A-Za-z]{2}[A-Za-z0-9]{10}$"
+        >
+        <div *ngIf="isFieldInvalid('isin')" class="invalid-feedback">
+          Enter a valid ISIN (first two characters must be letters).
+        </div>
+      </div>
+  
+      <!-- Website Field -->
+      <div class="mb-3">
+        <label for="website" class="form-label">Website:</label>
+        <input 
+          id="website" 
+          type="text" 
+          [(ngModel)]="company.website" 
+          name="website" 
+          class="form-control"
+        >
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="mb-3 text-center">
+        <button type="submit" class="btn btn-primary" [disabled]="companyForm.invalid">
+          {{ isEditMode ? 'Update' : 'Create' }} Company
+        </button>
+      </div>
+    </form>
+  </div>
+  
